@@ -1,4 +1,4 @@
-from pprint import pprint
+from tkinter.messagebox import showinfo
 from typing import TypeVar
 
 import graph
@@ -32,8 +32,7 @@ def find_line_intersection(line1: tuple[list[int | float], list[int | float | li
 
     div = det(xdiff, ydiff)
     if div == 0:
-        # return 0, 0
-        raise Exception('lines do not intersect')
+        return 0, 0
 
     d = (det(*line1), det(*line2))
     x = det(d, xdiff) / div
@@ -57,7 +56,6 @@ def find_points_on_graph(others_edges: list[int], weight: int | float,
 
         name = (f"d(f, {others_edges[i]}) = (x + {full_path_matrix[others_edges[i]][edge[0]]} ; "
                 f"{weight + full_path_matrix[others_edges[i]][edge[1]]} - x)")
-        print(name)
 
         plot = graph.show_graph(point1_y0, left_lim_x, point1_y1, right_lim_x,
                                 point2_y0, left_lim_x, point2_y1, right_lim_x,
@@ -70,7 +68,6 @@ def find_points_on_graph(others_edges: list[int], weight: int | float,
         point4 = [right_lim_x, point2_y1]
 
         x_inter, y_inter = (find_line_intersection((point1, point2), (point3, point4)))
-        print(f"Line of intersection: x =  {x_inter}, y = {y_inter}")
 
         if y_inter >= point1_y0:
             all_pointers.append(([left_lim_x, point1_y0], [x_inter, y_inter]))
@@ -105,18 +102,16 @@ def find_edges(matrix: list[list[int | float]]) -> list[tuple[int, int]]:
 
 
 def solve(matrix: list[list[int | float]]) -> None:
-    print("Warning! Numbering in edges starts from 0\n")
+    showinfo(title="Warning", message="Numbering in edges starts from 0")
 
     edges = find_edges(matrix)
     full_path_matrix = find_full_path_matrix(matrix)
     min_mark, edge = get_mark(full_path_matrix, edges)
-    print(f"Min mark = {min_mark} for edge {edge}")
+    # print(f"Min mark = {min_mark} for edge {edge}")
 
     others_edges = [_ for _ in range(len(full_path_matrix)) if _ not in edge]
     weight = full_path_matrix[edge[0]][edge[1]]
 
     all_pointers, plot = find_points_on_graph(others_edges, weight, full_path_matrix, edge)
+    plot = graph.show_final_graph(all_pointers, 0, weight, plot)
     plot.show()
-
-    pprint(all_pointers)
-    graph.show_final_graph(all_pointers, 0, weight).show()

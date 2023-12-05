@@ -1,5 +1,4 @@
 from tkinter.messagebox import showerror
-
 import customtkinter as ctk
 
 ctk.set_appearance_mode("Light")
@@ -8,11 +7,12 @@ ctk.set_default_color_theme("blue")
 MATRIX = None
 
 
-def start_solve(fields: list, size: int) -> None:
+def start_solve(fields: list, size: int, root) -> None:
     try:
         matrix = read_load_matrix(fields, size)
         global MATRIX
         MATRIX = matrix
+        root.quit()
     except ValueError:
         return
 
@@ -66,7 +66,7 @@ def redraw_root(size: str, root, label, entry, button) -> None:
 
     fields = draw_entry_matrix(size, root)
 
-    button.configure(command=lambda: start_solve(fields, size))
+    button.configure(command=lambda: start_solve(fields, size, root))
 
 
 def run() -> None:
