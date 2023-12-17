@@ -1,15 +1,11 @@
 from tkinter.messagebox import showinfo
-from typing import TypeVar
 
 import graph
 from Dijkstra_algorithm import find_full_path_matrix
-
-TTupleList = TypeVar("TTupleList",
-                     bound=
-                     list[tuple[list[int | float, int | float], list[int | float, int | float]]])
+from types import TTupleList, TPointsTuple, TMatrix, TEdge
 
 
-def delete_duplicates(lst: list[tuple[list[int | float, int | float], list[int | float, int | float]]]) -> list:
+def delete_duplicates(lst: TTupleList) -> list:
     new_lst = []
     for elem in lst:
         if elem not in new_lst:
@@ -21,9 +17,7 @@ def delete_duplicates(lst: list[tuple[list[int | float, int | float], list[int |
     return new_lst
 
 
-def find_line_intersection(line1: tuple[list[int | float], list[int | float | list[int | float]]],
-                           line2: tuple[list[int | float], list[int | float | list[int | float]]]) -> \
-        (int | float, int | float):
+def find_line_intersection(line1: TPointsTuple, line2: TPointsTuple) -> (int | float, int | float):
     xdiff = (line1[0][0] - line1[1][0], line2[0][0] - line2[1][0])
     ydiff = (line1[0][1] - line1[1][1], line2[0][1] - line2[1][1])
 
@@ -41,8 +35,8 @@ def find_line_intersection(line1: tuple[list[int | float], list[int | float | li
 
 
 def find_points_on_graph(others_edges: list[int], weight: int | float,
-                         full_path_matrix: list[list[int | float]],
-                         edge: tuple[int, int]) -> (TTupleList, graph.TPyplot):
+                         full_path_matrix: TMatrix,
+                         edge: TEdge) -> (TTupleList, graph.TPyplot):
     all_pointers = []
     for i in range(len(others_edges)):
         left_lim_x = 0
@@ -84,14 +78,14 @@ def find_points_on_graph(others_edges: list[int], weight: int | float,
 
 
 # fix it, should return list ot dict
-def get_mark(matrix: list[list[int | float]],
-             edges: list[tuple[int, int]]) -> (int, tuple[int, int]):
+def get_mark(matrix: TMatrix,
+             edges: list[TEdge]) -> (int, TEdge):
     marks = [max(min(elem1, elem2) for index, (elem1, elem2) in enumerate(zip(matrix[i], matrix[j]))) for i, j in edges]
 
     return min(marks), edges[marks.index(min(marks))]
 
 
-def find_edges(matrix: list[list[int | float]]) -> list[tuple[int, int]]:
+def find_edges(matrix: TMatrix) -> list[TEdge]:
     edges = []
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
@@ -101,7 +95,7 @@ def find_edges(matrix: list[list[int | float]]) -> list[tuple[int, int]]:
     return edges
 
 
-def solve(matrix: list[list[int | float]]) -> None:
+def solve(matrix: TMatrix) -> None:
     showinfo(title="Warning", message="Numbering in edges starts from 0")
 
     edges = find_edges(matrix)

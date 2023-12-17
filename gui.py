@@ -1,5 +1,8 @@
 from tkinter.messagebox import showerror
+
 import customtkinter as ctk
+
+from types import TMatrix, TWindow, TButton, TEntry, TLabel
 
 ctk.set_appearance_mode("Light")
 ctk.set_default_color_theme("blue")
@@ -7,7 +10,7 @@ ctk.set_default_color_theme("blue")
 MATRIX = None
 
 
-def start_solve(fields: list, size: int, root) -> None:
+def start_solve(fields: list, size: int, root: TWindow) -> None:
     try:
         matrix = read_load_matrix(fields, size)
         global MATRIX
@@ -17,7 +20,7 @@ def start_solve(fields: list, size: int, root) -> None:
         return
 
 
-def read_load_matrix(fields: list, size: int) -> list[list[float]]:
+def read_load_matrix(fields: list, size: int) -> TMatrix:
     matrix = []
     row = []
     count_elem = 0
@@ -38,7 +41,7 @@ def read_load_matrix(fields: list, size: int) -> list[list[float]]:
     return matrix
 
 
-def draw_entry_matrix(size: int, root) -> list:
+def draw_entry_matrix(size: int, root: TWindow) -> list:
     fields = []
     frame = ctk.CTkFrame(root)
     frame.grid(row=1, column=0, columnspan=size)
@@ -52,7 +55,7 @@ def draw_entry_matrix(size: int, root) -> list:
     return fields
 
 
-def redraw_root(size: str, root, label, entry, button) -> None:
+def redraw_root(size: str, root: TWindow, label: TLabel, entry: TEntry, button: TButton) -> None:
     try:
         size = int(size)
     except ValueError:

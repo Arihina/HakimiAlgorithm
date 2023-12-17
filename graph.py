@@ -1,8 +1,6 @@
-from typing import TypeVar
-
 import matplotlib.pyplot as plt
 
-TPyplot = TypeVar("TPyplot", bound=plt)
+from types import TPyplot
 
 
 def show_graph(x1: int | float, y1: int | float,
