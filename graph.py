@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from types import TPyplot
+from types import TPyplot, TTupleList
 
 
 def show_graph(x1: int | float, y1: int | float,
@@ -21,7 +21,7 @@ def show_graph(x1: int | float, y1: int | float,
     return plt
 
 
-def show_final_graph(lst: list[tuple[list[int | float, int | float], list[int | float, int | float]]],
+def show_final_graph(lst: TTupleList,
                      vertical_x1: int | float, vertical_x2: int | float, plt: TPyplot) -> TPyplot:
     plt.figure("Final graph")
 

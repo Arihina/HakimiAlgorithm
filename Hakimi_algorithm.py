@@ -77,7 +77,6 @@ def find_points_on_graph(others_edges: list[int], weight: int | float,
     return all_pointers, plot
 
 
-# fix it, should return list ot dict
 def get_mark(matrix: TMatrix,
              edges: list[TEdge]) -> (int, TEdge):
     marks = [max(min(elem1, elem2) for index, (elem1, elem2) in enumerate(zip(matrix[i], matrix[j]))) for i, j in edges]
@@ -101,7 +100,6 @@ def solve(matrix: TMatrix) -> None:
     edges = find_edges(matrix)
     full_path_matrix = find_full_path_matrix(matrix)
     min_mark, edge = get_mark(full_path_matrix, edges)
-    # print(f"Min mark = {min_mark} for edge {edge}")
 
     others_edges = [_ for _ in range(len(full_path_matrix)) if _ not in edge]
     weight = full_path_matrix[edge[0]][edge[1]]

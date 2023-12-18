@@ -17,18 +17,18 @@ Theme is visualization of graphs for the Hakimi algorithm.
 
 3. Creating a virtual environment
 
-For Windows ```python -m venv venv```
-For Linux ```python3 -m venv venv```
+For Windows ```python -m venv venv```  
+For Linux ```python3 -m venv venv```  
 
 4. Activating the virtual environment
 
-For Windows ```venv\Scripts\activate```
-For Linux ```source venv/bin/activate```
+For Windows ```venv\Scripts\activate```  
+For Linux ```source venv/bin/activate```  
 
 5. Installing dependencies
 
-For Windows ```pip install -r requirements.txt```
-For Linux ```pip3 install -r requirements.txt```
+For Windows ```pip install -r requirements.txt```  
+For Linux ```pip3 install -r requirements.txt```  
 
 ## Dependencies
 
