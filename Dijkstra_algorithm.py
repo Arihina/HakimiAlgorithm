@@ -1,15 +1,15 @@
 import math
 
+from types import TMatrix
 
-def get_related_nodes(matrix: list[list[int | float]],
-                      node: int):
+
+def get_related_nodes(matrix: TMatrix, node: int):
     for index, weight in enumerate(matrix[node]):
         if weight > 0:
             yield index
 
 
-def find_min_node(row: list[int | float],
-                  visited_nodes: set[int]) -> int:
+def find_min_node(row: list[int | float], visited_nodes: set[int]) -> int:
     min_value = -1
     max_value = max(row)
 
@@ -21,8 +21,7 @@ def find_min_node(row: list[int | float],
     return min_value
 
 
-def find_min_path(matrix: list[list[int | float]],
-                  node: int) -> list[int | float]:
+def find_min_path(matrix: TMatrix, node: int) -> list[int | float]:
     length = len(matrix)
     row = [math.inf] * length
     visited_nodes = {node}
@@ -41,5 +40,5 @@ def find_min_path(matrix: list[list[int | float]],
     return row
 
 
-def find_full_path_matrix(matrix: list[list[int | float]]) -> list[list[int | float]]:
+def find_full_path_matrix(matrix: TMatrix) -> TMatrix:
     return [find_min_path(matrix, node) for node in range(len(matrix[0]))]
