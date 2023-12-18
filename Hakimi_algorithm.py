@@ -2,7 +2,7 @@ from tkinter.messagebox import showinfo
 
 import graph
 from Dijkstra_algorithm import find_full_path_matrix
-from types import TTupleList, TPointsTuple, TMatrix, TEdge
+from aliases import TTupleList, TPointsTuple, TMatrix, TEdge
 
 
 def delete_duplicates(lst: TTupleList) -> list:

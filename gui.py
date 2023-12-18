@@ -2,7 +2,7 @@ from tkinter.messagebox import showerror
 
 import customtkinter as ctk
 
-from types import TMatrix, TWindow, TButton, TEntry, TLabel
+from aliases import TMatrix, TWindow, TButton, TEntry, TLabel
 
 ctk.set_appearance_mode("Light")
 ctk.set_default_color_theme("blue")

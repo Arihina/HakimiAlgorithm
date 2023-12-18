@@ -1,6 +1,6 @@
 import math
 
-from types import TMatrix
+from aliases import TMatrix
 
 
 def get_related_nodes(matrix: TMatrix, node: int):

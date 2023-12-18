@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-from types import TPyplot, TTupleList
+from aliases import TPyplot, TTupleList
 
 
 def show_graph(x1: int | float, y1: int | float,
